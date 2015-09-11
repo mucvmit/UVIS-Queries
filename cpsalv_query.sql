@@ -1,0 +1,4 @@
+--Finds number of patients who have had a CPSALV test run over a given time frame, grouped by species.
+SELECT COUNT(res.RESULT_ID), species.SPECIES FROM UVIS_CL_RESULT res, UVIS_CL_PATIENT patient, UVIS_SPECIES_M species WHERE TEST_ID = 49 AND RSTATUS = 'AR' AND RESULT_DATETIME BETWEEN '1-JAN-14' AND '1-JAN-15' AND res.PATIENT_ID = patient.PATIENT_ID AND patient.SPECIES_ID = species.SPECIES_ID GROUP BY SPECIES;
+--Finds number of hospital patients who have had a CPSALV test run over a given time frame, grouped by species.
+SELECT COUNT(res.RESULT_ID), species.SPECIES FROM UVIS_CL_RESULT res, UVIS_CL_PATIENT patient, UVIS_SPECIES_M species WHERE TEST_ID = 49 AND RSTATUS = 'AR' AND RESULT_DATETIME BETWEEN '1-JAN-14' AND '1-JAN-15' AND res.PATIENT_ID = patient.PATIENT_ID AND patient.SPECIES_ID = species.SPECIES_ID AND patient.PATIENT_TYPE = 'HOSPITAL' GROUP BY SPECIES;

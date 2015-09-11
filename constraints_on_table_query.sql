@@ -1,0 +1,2 @@
+--This query returns all constraints on a table- useful for checking to see if it is safe to change data without affecting other aspects of the database.
+select owner, constraint_name, constraint_type, table_name, r_owner, r_constraint_name from all_constraints where constraint_type = 'R' and r_constraint_name in (select constraint_name from all_constraints where constraint_type in ('P','U') and table_name = 'UVIS_PATIENT');
